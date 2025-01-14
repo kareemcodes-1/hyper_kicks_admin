@@ -17,10 +17,34 @@ const Dashboard = () => {
   const [ordersMonthData, setOrdersMonthData] = useState<OrderByMonth[]>([]);
 
   useEffect(() => {
-      const productsPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/products`);
-      const customersPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/customers`);
-      const ordersPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders`);
-      const ordersMonthPromise =  fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders/month`);
+      const productsPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/products`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: "include"
+      });
+      const customersPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/customers`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: "include"
+      });
+      const ordersPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: "include"
+      });
+      const ordersMonthPromise =  fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders/month`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: "include"
+      });
 
       Promise.all([productsPromise, customersPromise, ordersPromise, ordersMonthPromise]).then((responses) => {
          return Promise.all(responses.map((res) => res.json()))
