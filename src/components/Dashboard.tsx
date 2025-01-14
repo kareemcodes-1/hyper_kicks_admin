@@ -52,7 +52,7 @@ const Dashboard = () => {
           setProducts(productsData);
           setCustomers(customersData);
           setOrders(ordersData);
-        })
+        }).catch((err) => console.log(err));
       })
   }, []);
 

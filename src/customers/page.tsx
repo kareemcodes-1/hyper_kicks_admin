@@ -19,7 +19,7 @@ const Customers = () => {
         const data = await res.json();
         setCustomers(data);
     })();
-  })
+  }, [])
 
   return (
     <Layout>
