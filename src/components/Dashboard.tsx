@@ -25,21 +25,21 @@ const Dashboard = () => {
       });
       const customersPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/customers`, {
         method: "GET",
-        credentials: "include",
+        // credentials: "include",
         headers: {
           'Content-Type': 'application/json'
         },
       });
       const ordersPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders`, {
         method: "GET",
-        credentials: "include",
+        // credentials: "include",
         headers: {
           'Content-Type': 'application/json'
         },
       });
       const ordersMonthPromise =  fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders/month`, {
         method: "GET",
-        credentials: "include",
+        // credentials: "include",
         headers: {
           'Content-Type': 'application/json'
         },
