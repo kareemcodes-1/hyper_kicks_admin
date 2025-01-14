@@ -56,10 +56,8 @@ const Navbar = () => {
   const { adminInfo, logout } = useStore();
   const [openProfileMenu, setOpenProfileMenu] = useState<boolean>(false);
   const [openCommandBar, setOpenCommandBar] = useState<boolean>(false);
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
   const [openThemeSelect, setOpenThemeSelect] = useState<boolean>(false);
-
-  console.log(theme);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -125,7 +123,7 @@ const Navbar = () => {
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Suggestions">
             {items.map((item) => (
-              <a href={item.url} className="cursor-pointer">
+              <a key={item.title} href={item.url} className="cursor-pointer">
                 <CommandItem className="cursor-pointer">
                   {item.title}
                 </CommandItem>

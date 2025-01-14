@@ -15,7 +15,13 @@ const RevenueChart = () => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-      fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders/month`)
+      fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders/month`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', 
+      })
       .then((res) => res.json())
       .then((data) => setChartData(data))
       .catch((err) => console.log(err));

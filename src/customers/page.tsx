@@ -9,7 +9,13 @@ const Customers = () => {
 
   useEffect(() => {
     (async function () {
-        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/customers`);
+        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/customers`, {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
         const data = await res.json();
         setCustomers(data);
     })();

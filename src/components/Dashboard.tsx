@@ -25,21 +25,21 @@ const Dashboard = () => {
       });
       const customersPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/customers`, {
         method: "GET",
-        // credentials: "include",
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json'
         },
       });
       const ordersPromise = fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders`, {
         method: "GET",
-        // credentials: "include",
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json'
         },
       });
       const ordersMonthPromise =  fetch(`${import.meta.env.VITE_SERVER_URL}/api/orders/month`, {
         method: "GET",
-        // credentials: "include",
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json'
         },
@@ -101,7 +101,7 @@ const Dashboard = () => {
             <div className="flex flex-col gap-[1rem]">
                  {orders.length > 0 ? (
                   orders.map((order) => (
-                    <div className="flex items-center justify-between w-full mt-[1rem]">
+                    <div key={order._id} className="flex items-center justify-between w-full mt-[1rem]">
                     <div className="flex items-center gap-[1rem]">
                       <img src={order.userId.avatar} alt={order.userId.name} className="w-[2rem] h-[2rem] rounded-full"/>
   
