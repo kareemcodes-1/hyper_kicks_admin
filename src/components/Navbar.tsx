@@ -191,7 +191,7 @@ const Navbar = () => {
           <img
             src={adminInfo?.avatar}
             alt={adminInfo?.name}
-            className="w-[1.5rem] h-[1.5rem] rounded-full relative"
+            className="w-[1.5rem] h-[1.5rem] rounded-full relative object-cover"
           />
         </button>
 

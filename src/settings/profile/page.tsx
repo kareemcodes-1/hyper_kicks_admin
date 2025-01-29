@@ -35,21 +35,28 @@ const Profile = () => {
     }, [adminInfo]);
 
 
-    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e?.target?.files?.[0];
+    const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target?.files?.[0];
         if(file){
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-
-            fileReader.onload = () => {
-                const image = fileReader.result;
-                if(typeof image === "string"){
-                    setImagePreview(image);
-                }
+            const data = new FormData();
+            data.append("file", file);
+            data.append("upload_preset", 'hyperkicks');
+            data.append('cloud_name', 'datpkisht');
+  
+            const res = await fetch('https://api.cloudinary.com/v1_1/datpkisht/image/upload', {
+              method: "POST",
+              body: data,
+            });
+  
+            const imageURL = await res.json();
+            if (imageURL.url) {
+              setImagePreview(imageURL.url);
+              toast.success("Image uploaded successfully!");
+            } else {
+              throw new Error("Failed to upload image");
             }
         }
-    }
-
+      }
 
     const updateUser = async () => {
         const data = {
@@ -100,9 +107,9 @@ const Profile = () => {
             <form action={updateUser} className='flex flex-col gap-[1rem] mt-[2rem]'>
 
                   <div className='flex items-center gap-[1rem]'>
-                      <img src={imagePreview ? imagePreview : adminInfo?.avatar} alt={adminInfo?.name} className='w-[8rem] h-[8rem] rounded-full'/>
+                      <img src={imagePreview ? imagePreview : adminInfo?.avatar} alt={adminInfo?.name} className='w-[8rem] h-[8rem] rounded-full object-cover'/>
                       <button type='button' className='yena-btn-black dark:yena-btn' onClick={() => ref.current?.click()}>Choose file</button>
-                      <input type="file" ref={ref} name="avatar" id="avatar" className='hidden' onChange={handleImageChange}/>
+                      <input type="file" ref={ref} name="avatar" id="avatar" className='hidden' onChange={handleImageUpload}/>
                   </div>
 
                   <div className='flex flex-col'>

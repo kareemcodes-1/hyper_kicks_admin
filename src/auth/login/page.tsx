@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { useFormStatus } from 'react-dom';
 import Loading from '../../components/loading';
 import { Input } from '../../components/ui/input';
+import { Label } from '../../components/ui/label';
 
 const SubmitBtn = () => {
 
@@ -14,7 +15,7 @@ const SubmitBtn = () => {
     <button
     type="submit"
     disabled={pending}
-    className="flex w-full justify-center rounded-md yena-btn dark:yena-btn-black px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+    className="yena-black-btn dark:yena-btn w-full "
   >
     {pending ? <Loading type='white'/> : 'Login'}
   </button>
@@ -36,9 +37,23 @@ const Login = () => {
 
 
     const formAction = async (formData: FormData) => {
+        const email = formData.get('email') as string;
+        const password = formData.get('password') as string;
+
+        if(!email || !password){
+            if(!email){
+                toast.error('Email is required');
+            }
+            if(!password){
+              toast.error('Password is required');
+          }
+
+          return;
+        }
+
         const userData = {
-            email: formData.get('email') as string,
-            password: formData.get('password') as string
+            email,
+            password 
         }
 
         try {
@@ -57,8 +72,6 @@ const Login = () => {
                 setCredientials(data);
                 toast.success('Login successful');
                 navigate('/');
-            }else{
-               toast.error("Access Denied, You're not admin")
             }
         } catch (error) {
             toast.error(error);
@@ -73,7 +86,7 @@ const Login = () => {
        </div>
 
        <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight dark:text-white text-black">
-         Login admin
+         Welcome Admin.
        </h2>
      </div>
 
@@ -81,9 +94,9 @@ const Login = () => {
        <form action={formAction} className="space-y-6">
 
          <div>
-           <label htmlFor="email" className="block text-sm/6 font-medium dark:text-gray-200 text-gray-900">
+           <Label htmlFor="email">
              Email address
-           </label>
+           </Label>
            {/* <div className="mt-2">
              <input
                id="email"
@@ -111,9 +124,9 @@ const Login = () => {
 
          <div>
            <div className="flex items-center justify-between">
-             <label htmlFor="password" className="block text-sm/6 font-medium dark:text-gray-200 text-gray-900">
+             <Label htmlFor="password">
                Password
-             </label>
+             </Label>
 
            </div>
            <div className="mt-2">
