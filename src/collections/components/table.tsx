@@ -156,8 +156,6 @@ const CollectionsTable = ({ collections }: { collections: Collection[] }) => {
                   <DropdownMenuContent>
                   <DropdownMenuItem onClick={() => editCollection(row.original, true)}>Edit</DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setOpenCollectionDeleteDialog(true)}>Delete</DropdownMenuItem>
-                  <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuItem>Subscription</DropdownMenuItem>
                   </DropdownMenuContent>
                   </DropdownMenu>
 

@@ -10,6 +10,7 @@ import { useStore } from "../store/store";
 import { Collection } from "../types/type";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
+import Loading from "../components/loading";
 
 const CollectionModal = ({setOpenDialog}: {setOpenDialog: () => void;}) => {
    
@@ -204,7 +205,7 @@ const CollectionModal = ({setOpenDialog}: {setOpenDialog: () => void;}) => {
       type="submit"
       className="yena-btn-black w-full dark:yena-btn"
     >
-      {editingMode ? (isLoading ? 'Saving...' : 'Update') : (isLoading ? 'Saving...' : 'Create')}
+      {editingMode ? (isLoading ? <Loading /> : 'Update') : (isLoading ? <Loading /> : 'Create')}
     </button>
   </div>
 </form>

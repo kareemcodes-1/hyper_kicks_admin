@@ -157,8 +157,6 @@ const ProductsTable = ({ products }: { products: Product[] }) => {
                   <DropdownMenuContent>
                   <DropdownMenuItem onClick={() => editProduct(row.original, true)}>Edit</DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setOpenProductDeleteDialog(true)}>Delete</DropdownMenuItem>
-                  <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuItem>Subscription</DropdownMenuItem>
                   </DropdownMenuContent>
                   </DropdownMenu>
 

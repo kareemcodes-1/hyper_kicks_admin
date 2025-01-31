@@ -271,7 +271,7 @@ const ProductModal = ({ setOpenDialog }: { setOpenDialog: () => void }) => {
               <img
                 src={previewImage}
                 alt="preview-img"
-                className="h-[15rem] w-full rounded-lg border object-cover border-dashed"
+                className="h-[10rem] w-full rounded-lg border object-cover border-dashed"
               />
             ) : (
               <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
@@ -311,10 +311,10 @@ const ProductModal = ({ setOpenDialog }: { setOpenDialog: () => void }) => {
             >
               {editingMode
                 ? isLoading
-                  ? <Loading type="white"/>
+                  ? <Loading />
                   : "Update"
                 : isLoading
-                ? "Saving..."
+                ? <Loading />
                 : "Create"}
             </button>
           </div>
