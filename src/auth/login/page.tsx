@@ -17,7 +17,7 @@ const SubmitBtn = () => {
     disabled={pending}
     className="yena-black-btn dark:yena-btn w-full "
   >
-    {pending ? <Loading type='white'/> : 'Login'}
+    {pending ? <Loading /> : 'Login'}
   </button>
   )
 }
